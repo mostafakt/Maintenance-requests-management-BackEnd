@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework.authtoken.models import Token
 from  rest_framework import serializers
-from .models import Techincals,Customers,Admin,CustomerProfile,TechincalProfile,orders,Devices,mancontact
+from .models import Techincals,Customers,Admin,CustomerProfile,TechincalProfile,orders,Devices,mancontact,image_orders
 
 
 class CustomersRegistrationSerializer(RegisterSerializer):
@@ -93,8 +93,15 @@ class TechincalProfileSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model=orders
-        fields=('id', 'ordernumber' ,'customer' ,'techincal','name','description','problemimage','timeofoccurrance','Frequencyofoccurane','RequriedVisit','location')
+        fields=('id', 'description','timeofoccurrance','Frequencyofoccurane','RequriedVisit','location')
 
+
+
+
+class problemOrderimageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=image_orders
+        fields=('id', 'order','problemimage')
 
 
 

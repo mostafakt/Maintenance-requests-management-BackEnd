@@ -4,10 +4,10 @@ from django.shortcuts import render
 from django.shortcuts import render
 from rest_auth.registration.views import RegisterView
 from .models import CustomerProfile,TechincalProfile,orders,Devices
-from .models import mancontact
+from .models import mancontact,image_orders
 from rest_framework import viewsets
 from .serializers import CustomerProfileSerializer,TechincalProfileSerializer,DevicesSerializer,OrderSerializer
-from .serializers import mancontatSerizaizer
+from .serializers import mancontatSerizaizer,problemOrderimageSerializer
 
 from .serializers import (
     CustomersRegistrationSerializer, TechincalsBuyerCustomRegistrationSerializer,
@@ -60,6 +60,13 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
 
 
+
+class ImageOrderProblemViewSet(viewsets.ModelViewSet):
+    queryset = image_orders.objects.all()
+    serializer_class = problemOrderimageSerializer
+
+
+
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -67,23 +74,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 
-# class MyTokenObtainPairSerializers(TokenObtainPairSerializer):
-#     def validate(self, attrs):
-#         data = super().validate(attrs)
-#         refresh = self.get_token(self.user)
-#
-#         # Add extra responses here
-#
-#         refresh = RefreshToken.for_user(self.user)
-#
-#
-#         data['is_techincal'] = self.user.is_techincal
-#         data['is_customer'] = self.user.is_customer
-#         data['is_admin'] = self.user.is_admin
-#
-#
-#         return data
-#
+
 
 class MyTokenObtainPairSerializers(TokenObtainPairSerializer):
     @classmethod

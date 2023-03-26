@@ -5,7 +5,7 @@ from rest_framework import routers
 from .views import MancontactViewset ,MyTokenObtainPairView
 from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework_simplejwt import views as jwt_views
-
+from .views import ImageOrderProblemViewSet
 
 router=routers.DefaultRouter()
 
@@ -14,6 +14,8 @@ router.register('TechincalProfile',TechincalProfileViewSet,basename='Techincal')
 router.register('Devices',DevicesViewSet,basename='device')
 router.register('orders',OrderViewSet,basename='order')
 router.register('man',MancontactViewset,basename='man')
+router.register('imageproblem',ImageOrderProblemViewSet,basename='imageproblem')
+
 
 
 urlpatterns = [

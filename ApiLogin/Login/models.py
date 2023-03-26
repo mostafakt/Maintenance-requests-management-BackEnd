@@ -84,19 +84,18 @@ class CustomerProfile(models.Model):
 
 
 class orders(models.Model):
-    ordernumber=models.CharField(max_length=30,default=None)
-    customer=models.OneToOneField(CustomerProfile,on_delete=models.CASCADE)
-    techincal=models.ManyToManyField(TechincalProfile,default=None)
-    name=models.CharField(max_length=150)
     description=models.CharField(max_length=150)
     timeofoccurrance=models.DateTimeField(default=None)
     Frequencyofoccurane=models.IntegerField(default=None)
-    problemimage=models.ImageField(upload_to='pic')
     RequriedVisit=models.DateTimeField(default=None)
     location=models.CharField(max_length=150,default=None)
 
 
 
+
+class image_orders(models.Model):
+    order=models.ForeignKey(orders,on_delete=models.CASCADE)
+    problemimage = models.ImageField(upload_to='pic')
 
 
 class mancontact(models.Model):
